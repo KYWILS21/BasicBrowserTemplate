@@ -6,6 +6,13 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.EditText
 import android.widget.ImageButton
+import com.android.volley.Request
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import java.net.URL
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,5 +35,16 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        goButton.setOnClickListener(){
+            val url = urlEditText.text.toString()
+
+            webView.loadUrl(if(url.startsWith("http://")){
+                url
+            } else {
+                "https://" + url
+            })
+        }
     }
 }
+
+
